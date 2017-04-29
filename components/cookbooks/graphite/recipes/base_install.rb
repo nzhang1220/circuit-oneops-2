@@ -97,6 +97,14 @@ carbonate}.each do |pkg|
     end
 end
 
+bash "remove-Twisted-upgrade-pyopenssl" do
+    user "root"
+    code <<-EOF
+    pip uninstall -y Twisted
+    (pip install pyopenssl --upgrade)
+    EOF
+end
+
 Chef::Log.info("Installed additional python packages and Graphite tools.")
 
 # add graphite user
